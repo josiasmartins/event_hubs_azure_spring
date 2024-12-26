@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        connection-string: ${AZURE_EVENTHUB_NAMESPACE_CONNECTION_STRING}
+        namespace: my-application
+        processor:
+          checkpoint-store:
+            container-name: medium-eventhub
+            account-name: mediumeventhub
+            account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
+    function:
+      definition: consume
+    stream:
+      output-bindings: supply
+      bindings:
+        consume-in-0:
+          destination: medium-eventhub
+          group: $Default
+        supply-out-0:
+          destination: medium-eventhub
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint:
+                mode: RECORD
+          supply-out-0:
+            producer:
+              sync: true
+      default:
+        producer:
+          errorChannelEnabled: true
