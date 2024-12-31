@@ -2,23 +2,23 @@ spring:
   cloud:
     azure:
       eventhubs:
-        connection-string: Endpoint=sb://eventhubsnamespace.servicebus.windows.net/;SharedAccessKeyName=eventhubssaspolicy;SharedAccessKey=OIXEkmbWRrRaywTcUIf9E9ecYB9ca1ygP+AEhI4SViY=;EntityPath=eventhubteste
-        namespace: eventhubsnamespace
+        connection-string: ${AZURE_EVENTHUB_NAMESPACE_CONNECTION_STRING:Endpoint=sb://eventhubsnamespace.servicebus.windows.net/;SharedAccessKeyName=eventhubssaspolicy;SharedAccessKey=OIXEkmbWRrRaywTcUIf9E9ecYB9ca1ygP+AEhI4SViY=;EntityPath=eventhubteste}
+        namespace: ${AZURE_EVENTHUB_NAMESPACE_NAME:eventhubsnamespace}
         processor:
           checkpoint-store:
-            container-name: eventhubs-account-container
-            account-name: storageaccounteventhubs
-            account-key: B+AkM8RZOBpLf2ZS67MjbsXjsyJ6VQOsNCfaD9M0Q6okWwTB9FPMSX2ig+nG7SX1RgPe9UL5atHH+AStVwBJjQ==
+            container-name: ${AZURE_ACCOUNT_CONTAINER_NAME:eventhubs-account-container}
+            account-name: ${AZURE_ACCOUNT_NAME:storageaccounteventhubs}
+            account-key: ${AZURE_ACCOUNT_NAME:B+AkM8RZOBpLf2ZS67MjbsXjsyJ6VQOsNCfaD9M0Q6okWwTB9FPMSX2ig+nG7SX1RgPe9UL5atHH+AStVwBJjQ==}
     function:
       definition: consume
     stream:
       output-bindings: supply
       bindings:
         consume-in-0:
-          destination: eventhubteste
+          destination: ${AZURE_EVENTHUBS_CONSUME_DESTINATION:eventhubteste}
           group: $Default
         supply-out-0:
-          destination: eventhubteste
+          destination: ${AZURE_EVENTHUBS_PUBLISH_DESTINATION:eventhubteste}
       eventhubs:
         bindings:
           consume-in-0:
