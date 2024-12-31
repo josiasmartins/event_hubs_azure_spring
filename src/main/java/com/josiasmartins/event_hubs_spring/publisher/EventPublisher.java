@@ -12,16 +12,15 @@ import org.springframework.stereotype.Component;
 //import java.util.logging.Logger;
 
 @Component
-@RequiredArgsConstructor
 public class EventPublisher {
 
     private static final Logger log = LoggerFactory.getLogger(EventPublisher.class);
 
     private final StreamBridge streamBridge;
 
-//    public EventPublisher(StreamBridge streamBridge) {
-//        this.streamBridge = streamBridge;
-//    }
+    public EventPublisher(StreamBridge streamBridge) {
+        this.streamBridge = streamBridge;
+    }
 
     public void publishEvent(String message) {
         log.info("Sending message: {}", message);

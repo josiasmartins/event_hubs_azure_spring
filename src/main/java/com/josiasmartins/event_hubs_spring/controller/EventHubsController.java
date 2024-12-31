@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api_event")
 public class EventHubsController {
 
@@ -24,10 +23,10 @@ public class EventHubsController {
 
     private final EventPublisher eventPublisher;
 
-//    public EventHubsController(EventhubsService eventhubsService, EventPublisher eventPublisher) {
-//        this.eventhubsService = eventhubsService;
-//        this.eventPublisher = eventPublisher;
-//    }
+    public EventHubsController(EventhubsService eventhubsService, EventPublisher eventPublisher) {
+        this.eventhubsService = eventhubsService;
+        this.eventPublisher = eventPublisher;
+    }
 
     @PostMapping("/publishMessage")
     public Mono<ResponseEntity<String>> publishMessage() {
