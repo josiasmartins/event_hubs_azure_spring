@@ -29,7 +29,7 @@ public class EventPublisher {
         log.info("Send {}.", message);
     }
 
-    @ServiceActivator(inputChannel = "medium-eventhub.errors")
+    @ServiceActivator(inputChannel = "eventhubteste.errors")
     public void produceError(Message<?> message) {
         log.error("Handling Producer ERROR: " + message);
     }

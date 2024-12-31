@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api_event")
 public class EventHubsController {
 
     private static final Logger log = LoggerFactory.getLogger(EventHubsController.class);

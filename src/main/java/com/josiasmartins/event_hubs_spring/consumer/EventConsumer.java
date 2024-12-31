@@ -21,7 +21,7 @@ public class EventConsumer {
         };
     }
 
-    @ServiceActivator(inputChannel = "medium-eventhub.$Default.errors")
+    @ServiceActivator(inputChannel = "eventhubteste.$Default.errors")
     public void consumerError(Message<?> message) {
         log.error("Handling consumer ERROR: " + message);
     }
